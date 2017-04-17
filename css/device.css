@@ -1,0 +1,102 @@
+
+#main   {
+ background-image: url("images/1825_map.png");
+ background-repeat: no-repeat;
+ background-color:silver;
+}
+
+.yellow {
+  fill:	rgb(255,255,99);
+  stroke-width:	2px;
+  stroke: black;
+  opacity: 1.0;
+}
+
+.allyellow {
+  fill: yellow;
+  stroke-width: 1px;
+  stroke:yellow;
+}
+
+.green {
+  fill:	green;
+  stroke-width:	2px;
+  stroke: black;
+  opacity: 1.0;
+}
+
+.allgreen {
+  fill: green;
+  stroke-width: 1px;
+  stroke:green;
+}
+
+.brown {
+  fill: #654321;
+  stroke-width: 2px;
+  stroke: black;
+  opacity: 1.0;
+}
+
+.silver {
+  fill: silver;
+  stroke-width: 2px;
+  stroke: black;
+  opacity: 1.0;
+}
+
+.white {
+  fill:	rgb(255,255,255);
+  stroke-width:	1px;
+  stroke:	rgb(0,0,0);
+}
+
+.blue {
+  fill:	rgb(255,255,255);
+  opacity: 0.2;
+  stroke-width:	2px;
+  stroke:	rgb(0,0,255);
+}
+
+.bridge {
+  stroke-width: 3px;
+  stroke:black;
+}
+
+.track {
+  fill:transparent;
+  stroke: black;
+  stroke-width: 12px;
+}
+
+.tinystation {
+  fill:	black;
+  stroke: white;
+  stroke-width: 2px;
+}
+
+.smallstation {
+  stroke: black;
+  stroke-width: 9px;
+}
+
+.bigstation {
+  fill: white;
+  stroke:black;
+  stroke-width: 4px;
+}
+ 
+.linie,.pblau,.quad {
+  fill:	none;
+  stroke-width:	1px;
+  stroke-linecap:	round;
+  stroke:	rgb(40,130,225);
+}
+
+#box { 
+  position: absolute;   
+  height: auto; 
+  width: 600px;    
+  left: 9px; 
+  top: 9px; 
+} 

@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html ng-app="railsApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-animate.js"></script> 
+    <script src="gameboard.js"></script>
+    <script src="rails.js"></script>
+    <title>Rails</title>
+    <meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="stylesheet" type="text/css" href="css/device.css" />
+  </head>
+  <body ng-controller="TileListController as tileList" ng-keypress="tileList.keyPress($event)">
+    <span>
+      <div ng-click="tileList.mousePress($event)" ng-mousemove="tileList.mouseMove($event)">
+        <svg id="main" width="4000" height="4000" viewPort="0 0 4000 4000" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <polygon id="tile_zero" points="0,100 86.6,50 86.6,-50 0,-100 -86.6,-50 -86.6,50 0,100"/> 
+            
+            <line class="track" id="track_zero" x1="0" y1="0" x2="86.6" y2="0" transform="rotate(300)"/>
+            <line class="track" id="track_zero_2" x1="43.3" y1="0" x2="86.6" y2="0" transform="rotate(300)"/>
+
+            <circle class="bigstation" id="bigstation_zero" cx="0" cy="0" r="30" />
+            <use id="bigstation" xlink:href="#bigstation_zero"/>
+
+            <circle class="tinystation" id="tinystation" cx="0" cy="0" r="10" />
+
+            <use id="bigstation" xlink:href="#bigstation_zero"/>
+            <g class="bigstation" id="bigstation_2_double">
+              <rect x="-18" y="-30" width="36" height="60" />
+              <use xlink:href="#bigstation_zero" transform="translate(-30,0)"/>
+              <use xlink:href="#bigstation_zero" transform="translate(30,0)"/>
+            </g> 
+            <use id="bigstation_2_double_45" xlink:href="#bigstation_2_double" transform="rotate(30)"/>
+
+            <g class="bigstation" id="bigstation_2_single">
+              <use xlink:href="#bigstation_zero" transform="translate(0,-40)"/>
+              <use xlink:href="#bigstation_zero" transform="translate(0,+40)"/>
+            </g> 
+
+            <line class="smallstation" id="smallstation_v" x1="0" y1="15" x2="0" y2="-15" />
+            <line class="smallstation" id="smallstation_h" x1="-15" y1="0" x2="15" y2="0" />
+            <g id="smallstation">
+              <use xlink:href="#smallstation_v"/>
+            </g>
+            <g id="smallstation_out_v">
+              <use xlink:href="#smallstation_v" transform="translate(60,0)"/>
+            </g>
+            <g id="smallstation_v_0">
+              <use xlink:href="#smallstation_out_v" transform="rotate(303)"/>
+            </g>
+            <g id="smallstation_out_h">
+              <use xlink:href="#smallstation_h" transform="translate(50,0)"/>
+            </g>
+            <g id="smallstation_h_0">
+              <use xlink:href="#smallstation_out_h" transform="rotate(330)"/>
+            </g>
+
+            <path class="track" id="circle_0_1_zero" d="M 86.6 0 A 50 50 0 0 0 +43 +75" />
+            <path class="track" id="circle_0_2_zero" d="M 86.6 0 A 150 150 0 0 1 -43 -75" />
+
+            <use id="tile" xlink:href="#tile_zero" />
+
+            <g id="bridge_yellow_zero">
+              <line class="bridge" x1="-30" y1="-15" x2="30.0" y2="-15"/>
+              <line class="bridge" x1="-35.0" y1="-20" x2="-30" y2="-15"/>
+              <line class="bridge" x1="30.0" y1="-15" x2="35.0" y2="-20"/>
+              <rect class="allyellow" x="-30" y="-13" width="60" height="13" />
+            </g>
+            <g id="bridge_yellow">
+              <use xlink:href="#bridge_yellow_zero" />
+              <use xlink:href="#bridge_yellow_zero" transform="rotate(180)"/>
+            </g>
+
+            <g id="bridge_green_zero">
+              <line class="bridge" x1="-30" y1="-15" x2="30.0" y2="-15"/>
+              <line class="bridge" x1="-35.0" y1="-20" x2="-30" y2="-15"/>
+              <line class="bridge" x1="30.0" y1="-15" x2="35.0" y2="-20"/>
+              <rect class="allgreen" x="-30" y="-13" width="60" height="13" />
+            </g>
+
+            <g id="bridge_green">
+              <use xlink:href="#bridge_green_zero" />
+              <use xlink:href="#bridge_green_zero" transform="rotate(180)"/>
+            </g>
+
+            <g id="bridge_green_round_zero">
+              <path class="bridge" d="M 86.6 0 A 170 170 0 0 1 -43 -75" />
+<!--              <line class="bridge" x1="-35.0" y1="-20" x2="-30" y2="-15"/>
+              <line class="bridge" x1="30.0" y1="-15" x2="35.0" y2="-20"/>
+              <rect class="allgreen" x="-30" y="-13" width="60" height="13" />
+-->
+            </g>
+
+            <g id="bridge_green_round">
+              <use xlink:href="#bridge_green_round_zero" />
+              <use xlink:href="#bridge_green_round_zero" transform="rotate(180)"/>
+            </g>
+
+            <use class="yellow" id="tile_yellow" xlink:href="#tile_zero"/>
+            <use class="green" id="tile_green" xlink:href="#tile_zero"/>
+            <use class="brown" id="tile_brown" xlink:href="#tile_zero"/>
+            <use class="silver" id="tile_silver" xlink:href="#tile_zero"/>
+            <use class="white" id="tile_white" xlink:href="#tile_zero"/>
+            <use class="blue" id="tile_blue" xlink:href="#tile_zero"/>
+
+            <g id="track_0_1">
+              <use xlink:href="#track_zero"/>
+              <use xlink:href="#track_zero" transform="rotate(60)"/>
+            </g>
+
+            <g id="track_0_2">
+              <use xlink:href="#track_zero"/>
+              <use xlink:href="#track_zero" transform="rotate(120)"/>
+            </g>
+
+            <g id="track_0_3">
+              <use xlink:href="#track_zero"/>
+              <use xlink:href="#track_zero" transform="rotate(180)"/>
+            </g>
+    
+            <g id="circle_0_1">
+              <use xlink:href="#circle_0_1_zero" transform="rotate(300)"/>
+            </g>
+
+            <g id="circle_0_2">
+              <use xlink:href="#circle_0_2_zero" transform="rotate(60)"/>
+            </g>
+            
+            <g ng-repeat="pt in tileList.availableTiles" id="{{pt.tileNr}}">
+              <use xlink:href="{{tileList.level2Color(pt.level)}}" />
+              <use ng-repeat="element in pt.elements" xlink:href="{{element.id}}" ng:attr:transform="{{tileList.getRotate(element.rotate)}}" />
+            </g>
+          </defs>
+
+          <g ng-repeat="placement in tileList.placements">
+            <use xlink:href="{{tileList.nr2Ref(placement)}}" ng:attr:transform="{{tileList.getTransform(placement)}}"/>
+          </g>
+          
+          <g>
+            <use xlink:href="{{tileList.getCurrentTileRef()}}" ng:attr:transform="{{tileList.getTransform(tileList.getCurrentPlacement())}}" stroke-dasharray="7,3" stroke-dashoffset="0">
+              <animate attributeType="XML" attributeName="stroke-dashoffset" values="0;1;2;3;4;5;6;7;8;9" dur="0.4s" repeatCount="indefinite"/>
+            </use>
+          </g>          
+        </svg>
+      </div>
+    </span>
+    <span id="box">
+      <p>TileID: {{tileList.getCurrentTileNr()}} {{tileList.getCurrentTileRotate()}}</p>
+      <p>Connections: {{tileList.getCurrentTileConnections()}}</p>
+      <p>Mouse: {{tileList.getCurrentMouse()}}</p>
+    </span>
+  </body>
+</html>
